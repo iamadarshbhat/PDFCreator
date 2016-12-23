@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C70019201E0D530B009A9EFA /* FileController.m in Sources */ = {isa = PBXBuildFile; fileRef = C700191F1E0D530B009A9EFA /* FileController.m */; };
 		C7552DEF1E0BE62C00950582 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C7552DEE1E0BE62C00950582 /* main.m */; };
 		C7552DF21E0BE62C00950582 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7552DF11E0BE62C00950582 /* AppDelegate.m */; };
 		C7552DF51E0BE62C00950582 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7552DF41E0BE62C00950582 /* ViewController.m */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C700191E1E0D530B009A9EFA /* FileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileController.h; sourceTree = "<group>"; };
+		C700191F1E0D530B009A9EFA /* FileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileController.m; sourceTree = "<group>"; };
 		C7552DEA1E0BE62C00950582 /* PDFCreator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDFCreator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7552DEE1E0BE62C00950582 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C7552DF01E0BE62C00950582 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -103,6 +106,8 @@
 			children = (
 				C7552DF01E0BE62C00950582 /* AppDelegate.h */,
 				C7552DF11E0BE62C00950582 /* AppDelegate.m */,
+				C700191E1E0D530B009A9EFA /* FileController.h */,
+				C700191F1E0D530B009A9EFA /* FileController.m */,
 				C7552DF31E0BE62C00950582 /* ViewController.h */,
 				C7552DF41E0BE62C00950582 /* ViewController.m */,
 				C7552DF61E0BE62C00950582 /* Main.storyboard */,
@@ -207,7 +212,8 @@
 				TargetAttributes = {
 					C7552DE91E0BE62C00950582 = {
 						CreatedOnToolsVersion = 8.2;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 8YJ3NTXVGY;
+						ProvisioningStyle = Manual;
 					};
 					C7552E021E0BE62C00950582 = {
 						CreatedOnToolsVersion = 8.2;
@@ -276,6 +282,7 @@
 				C7552DF51E0BE62C00950582 /* ViewController.m in Sources */,
 				C7552DF21E0BE62C00950582 /* AppDelegate.m in Sources */,
 				C7552DEF1E0BE62C00950582 /* main.m in Sources */,
+				C70019201E0D530B009A9EFA /* FileController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,10 +429,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 8YJ3NTXVGY;
 				INFOPLIST_FILE = PDFCreator/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nous.crmbase.PDFCreator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nous.pdfCreator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7d3c9cbe-526f-4830-a6aa-7979036a235d";
+				PROVISIONING_PROFILE_SPECIFIER = PDFCreatorAdhocDistribution;
 			};
 			name = Debug;
 		};
@@ -433,10 +445,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 8YJ3NTXVGY;
 				INFOPLIST_FILE = PDFCreator/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nous.crmbase.PDFCreator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nous.pdfCreator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7d3c9cbe-526f-4830-a6aa-7979036a235d";
+				PROVISIONING_PROFILE_SPECIFIER = PDFCreatorAdhocDistribution;
 			};
 			name = Release;
 		};
@@ -505,6 +522,7 @@
 				C7552E191E0BE62C00950582 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C7552E1A1E0BE62C00950582 /* Build configuration list for PBXNativeTarget "PDFCreatorTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +531,7 @@
 				C7552E1C1E0BE62C00950582 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C7552E1D1E0BE62C00950582 /* Build configuration list for PBXNativeTarget "PDFCreatorUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +540,7 @@
 				C7552E1F1E0BE62C00950582 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
