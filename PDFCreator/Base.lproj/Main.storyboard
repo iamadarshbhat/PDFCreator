@@ -77,7 +77,13 @@
                             <constraint firstItem="8tw-vf-EaV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="k7O-vS-yHv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="PDF" id="g9h-wd-o5E"/>
+                    <navigationItem key="navigationItem" title="PDF" id="g9h-wd-o5E">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="zcb-1H-TvU">
+                            <connections>
+                                <segue destination="uPV-qF-lU7" kind="show" id="T1o-7P-1z5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="btnGeneratePDF" destination="3zd-52-22E" id="vrL-bO-1x7"/>
                         <outlet property="myTextView" destination="Fed-i5-PCy" id="FFg-Uz-1yv"/>
@@ -87,7 +93,7 @@
             </objects>
             <point key="canvasLocation" x="1087.2" y="69.715142428785612"/>
         </scene>
-        <!--View Controller-->
+        <!--Folder-->
         <scene sceneID="JgH-GI-NxG">
             <objects>
                 <viewController id="uPV-qF-lU7" sceneMemberID="viewController">
@@ -100,10 +106,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Folder" id="yny-hp-7Ls">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="AIj-ID-TcZ"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Zq-Sa-pTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1766" y="54"/>
+            <point key="canvasLocation" x="1895" y="32"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Dzg-86-fgt">
