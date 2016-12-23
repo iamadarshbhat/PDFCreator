@@ -9,7 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *btnGeneratePDF;
+@property (weak, nonatomic) IBOutlet UITextView *myTextView;
 
+- (IBAction)generatePDFAction:(id)sender;
+- (IBAction)openPDFAction:(id)sender;
+
+- (IBAction)closePDFAction:(id)sender;
 
 @end
 

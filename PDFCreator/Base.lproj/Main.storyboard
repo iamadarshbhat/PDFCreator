@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LVU-gr-zA5">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--PDF-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +21,107 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Fed-i5-PCy">
+                                <rect key="frame" x="16" y="126" width="343" height="251"/>
+                                <color key="backgroundColor" red="0.1442101626" green="0.24067145500000001" blue="0.56901626289999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tw-vf-EaV">
+                                <rect key="frame" x="16" y="387" width="343" height="30"/>
+                                <color key="backgroundColor" red="0.1442101626" green="0.24067145500000001" blue="0.56901626289999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Open PDF">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openPDFAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fyn-An-5WW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epF-yv-d6w">
+                                <rect key="frame" x="16" y="427" width="343" height="30"/>
+                                <color key="backgroundColor" red="0.1442101626" green="0.24067145500000001" blue="0.56901626289999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Close PDF">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="closePDFAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dQN-cV-Lcv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zd-52-22E">
+                                <rect key="frame" x="16" y="76" width="343" height="30"/>
+                                <color key="backgroundColor" red="0.1442101626" green="0.24067145500000001" blue="0.56901626289999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Generate PDF">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="generatePDFAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rN8-jY-sT2"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Fed-i5-PCy" secondAttribute="trailing" id="3bN-Ab-sZ4"/>
+                            <constraint firstItem="Fed-i5-PCy" firstAttribute="top" secondItem="3zd-52-22E" secondAttribute="bottom" constant="20" id="4VO-NR-Mn8"/>
+                            <constraint firstItem="8tw-vf-EaV" firstAttribute="top" secondItem="Fed-i5-PCy" secondAttribute="bottom" constant="10" id="62T-ZI-mB0"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8tw-vf-EaV" secondAttribute="bottom" constant="250" id="8fB-Cg-P5r"/>
+                            <constraint firstItem="Fed-i5-PCy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="MlG-h0-1yU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3zd-52-22E" secondAttribute="trailing" id="Sua-qJ-EAR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="epF-yv-d6w" secondAttribute="trailing" id="Uf4-al-vnz"/>
+                            <constraint firstItem="epF-yv-d6w" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Y40-4u-zkj"/>
+                            <constraint firstItem="epF-yv-d6w" firstAttribute="top" secondItem="8tw-vf-EaV" secondAttribute="bottom" constant="10" id="ZD7-5m-Tuj"/>
+                            <constraint firstItem="3zd-52-22E" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="eVz-bF-v3x"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8tw-vf-EaV" secondAttribute="trailing" id="fkq-Fj-Ixe"/>
+                            <constraint firstItem="3zd-52-22E" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="12" id="gln-Xu-ch2"/>
+                            <constraint firstItem="8tw-vf-EaV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="k7O-vS-yHv"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="PDF" id="g9h-wd-o5E"/>
+                    <connections>
+                        <outlet property="btnGeneratePDF" destination="3zd-52-22E" id="vrL-bO-1x7"/>
+                        <outlet property="myTextView" destination="Fed-i5-PCy" id="FFg-Uz-1yv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1087.2" y="69.715142428785612"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="JgH-GI-NxG">
+            <objects>
+                <viewController id="uPV-qF-lU7" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qhS-p9-K48"/>
+                        <viewControllerLayoutGuide type="bottom" id="WzF-kg-hxH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rKU-gb-cKc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Zq-Sa-pTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1766" y="54"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Dzg-86-fgt">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LVU-gr-zA5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cuk-EM-jbj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="tZL-M4-oK8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tVX-xR-ecG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="148" y="69.715142428785612"/>
         </scene>
     </scenes>
 </document>
