@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FolderCell.h"
 
-@interface FileController : UIViewController
+@interface FileController : UIViewController <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@property (weak, nonatomic) IBOutlet UICollectionView *fileCollectionView;
+
+- (IBAction)addNewFolder:(id)sender;
+
+
 
 @end

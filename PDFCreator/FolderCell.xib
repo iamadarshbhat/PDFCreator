@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="folderCellID" reuseIdentifier="folderCellID" id="gTV-IL-0wX" customClass="FolderCell">
+            <rect key="frame" x="0.0" y="0.0" width="172" height="99"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="172" height="99"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u13-5g-lRF">
+                        <rect key="frame" x="0.0" y="0.0" width="172" height="99"/>
+                        <state key="normal" title="New Folder" backgroundImage="folder"/>
+                    </button>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="u13-5g-lRF" secondAttribute="trailing" id="Hcr-Rf-v2a"/>
+                <constraint firstAttribute="bottom" secondItem="u13-5g-lRF" secondAttribute="bottom" id="iUM-pe-Cyk"/>
+                <constraint firstItem="u13-5g-lRF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="n9S-tY-poi"/>
+                <constraint firstItem="u13-5g-lRF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="zxb-w4-aIO"/>
+            </constraints>
+            <size key="customSize" width="172" height="99"/>
+            <connections>
+                <outlet property="folderBtn" destination="u13-5g-lRF" id="RZP-lY-WGj"/>
+            </connections>
+            <point key="canvasLocation" x="-89" y="-92.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="folder" width="512" height="512"/>
+    </resources>
+</document>
