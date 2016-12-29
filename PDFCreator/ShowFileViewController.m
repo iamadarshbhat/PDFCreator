@@ -8,7 +8,7 @@
 
 #import "ShowFileViewController.h"
 #import "FileCell.h"
-#import "Folder+CoreDataClass.swift"
+
 
 
 @interface ShowFileViewController ()
