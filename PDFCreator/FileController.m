@@ -9,7 +9,6 @@
 #import "FileController.h"
 #import "ShowFileViewController.h"
 #import <CoreData/CoreData.h>
-#import "MyDataController.h"
 #import "FolderPaths+CoreDataClass.h"
 
 
@@ -19,22 +18,29 @@
 
 @implementation FileController{
    
-    NSManagedObjectContext *managedObjectContext;
-    NSMutableArray *folderNames;
+   // NSManagedObjectContext *managedObjectContext;
+   
 }
+@synthesize folderNames;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.fileCollectionView registerNib:[UINib nibWithNibName:@"FolderCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"folderCellID"];
+  
+    
+   
+    [self.fileCollectionView registerNib:[UINib nibWithNibName:@"FolderCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"folderCellID"]; 
    
     
-    MyDataController *datacontroller =  [[MyDataController alloc] init];
-    [datacontroller initializeCoreData];
-    managedObjectContext = [datacontroller managedObjectContext];
-    folderNames = [NSMutableArray array];
-    
-    [self fetchPathsFromDatabase];
+}
+
+- (NSManagedObjectContext *)managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,9 +99,10 @@
 
 //Save folder Path in sqlite
 -(void)saveFolderPathInSqlite:(NSString *) fileName{
-    
    
     //Create new managed Object
+    
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSManagedObject *newfolderPath = [NSEntityDescription insertNewObjectForEntityForName:@"FolderPaths" inManagedObjectContext:managedObjectContext];
     [newfolderPath setValue:fileName  forKey:@"folderName"];
    
@@ -107,20 +114,5 @@
     }
 }
 
--(void)fetchPathsFromDatabase{
-    
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"FolderPaths"];
-    NSError *error = nil;
-    NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
-    
-    for (FolderPaths *folderPaths in results) {
-        [folderNames addObject:folderPaths.folderName];
 
-    }
-        if (!results) {
-        NSLog(@"Error fetching Employee objects: %@\n%@", [error localizedDescription], [error userInfo]);
-        abort();
-    }
-    
-}
 @end

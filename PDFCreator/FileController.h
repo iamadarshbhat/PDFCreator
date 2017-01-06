@@ -11,6 +11,7 @@
 
 @interface FileController : UIViewController <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *fileCollectionView;
+@property NSMutableArray *folderNames;
 
 - (IBAction)addNewFolder:(id)sender;
 

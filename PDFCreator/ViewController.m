@@ -8,6 +8,10 @@
 
 #import "ViewController.h"
 #import <CoreText/CoreText.h>
+#import <CoreData/CoreData.h>
+
+#import "FolderPaths+CoreDataClass.h"
+#import "FileController.h"
 
 
 @interface ViewController ()
@@ -20,6 +24,8 @@
     NSString *pdfFilePath;
     UIWebView* webView;
     UIImage *selectedImage;
+    NSMutableArray *folderNames;
+    UIDocumentInteractionController *documentController;
     
 }
 
@@ -32,9 +38,34 @@
     self.btnCamera.layer.cornerRadius = self.btnCamera.frame.size.height/2.0f;
     self.btnCamera.layer.borderColor=[UIColor redColor].CGColor;
     self.btnCamera.layer.borderWidth=2.0f;
-    // Do any additional setup after loading the view, typically from a nib.
+    
+        // Do any additional setup after loading the view, typically from a nib.
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [self fetchPathsFromDatabase];
+
+}
+
+- (NSManagedObjectContext *)managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([segue.identifier  isEqual: @"showFolder"]){
+        
+       FileController *fileController =  [segue destinationViewController];
+        
+        [self fetchPathsFromDatabase];
+        fileController.folderNames = folderNames;
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -73,14 +104,62 @@
 
 - (IBAction)openPDFAction:(id)sender {
     
+//    if(pdfFilePath != nil){
+//       NSURL *url = [NSURL fileURLWithPath:pdfFilePath];
+//       NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//       [webView setScalesPageToFit:YES];
+//       [webView loadRequest:request];
+//       [self.view addSubview:webView];
+//     }
+    
+    
+    
+    
+//    //***********
+//   
+//
+    
     if(pdfFilePath != nil){
-       NSURL *url = [NSURL fileURLWithPath:pdfFilePath];
-       NSURLRequest *request = [NSURLRequest requestWithURL:url];
-       [webView setScalesPageToFit:YES];
-       [webView loadRequest:request];
-       [self.view addSubview:webView];
-     }
+    documentController =[UIDocumentInteractionController
+     interactionControllerWithURL:[NSURL fileURLWithPath:pdfFilePath]];
+    documentController.delegate = self;
+   
+    documentController.UTI = @"com.adobe.pdf";
+    [documentController presentOpenInMenuFromRect:CGRectZero
+                                           inView:self.view
+                                         animated:YES];
+    }
+    
+    
+   
+    
+//    UIDocumentPickerViewController *documentPicker = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:@[@"public.data"]
+//                                                                                                            inMode:UIDocumentPickerModeImport];
+//    documentPicker.delegate = self;
+//    
+//    documentPicker.modalPresentationStyle = UIModalPresentationFormSheet;
+//    [self presentViewController:documentPicker animated:YES completion:nil];
+    
+    
+    //**********
+    
+//    UIDocumentMenuViewController *importMenu =
+//    [[UIDocumentMenuViewController alloc] initWithDocumentTypes:@[@"public.data"]
+//                                                         inMode:UIDocumentPickerModeImport];
+//    
+//    importMenu.delegate = self;
+//    [self presentViewController:importMenu animated:YES completion:nil];
 }
+
+
+-(void)documentMenu:(UIDocumentMenuViewController *)documentMenu didPickDocumentPicker:(UIDocumentPickerViewController *)documentPicker
+
+{
+    documentPicker.delegate = self;
+    [self presentViewController:documentPicker animated:YES completion:nil];
+}
+
+
 
 - (IBAction)closePDFAction:(id)sender {
     [webView removeFromSuperview];
@@ -204,5 +283,86 @@
     CGColorSpaceRelease(colorspace);
     CGColorRelease(color);
     
+}
+
+-(void)fetchPathsFromDatabase{
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"FolderPaths"];
+    NSError *error = nil;
+   
+   NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+
+    NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
+    folderNames = [[NSMutableArray alloc] init];
+    for (FolderPaths *folderPaths in results) {
+        [folderNames addObject:folderPaths.folderName];
+    }
+    
+    
+    if (!results) {
+        NSLog(@"Error fetching Employee objects: %@\n%@", [error localizedDescription], [error userInfo]);
+        abort();
+    }
+}
+
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+   
+    if(folderNames == nil){
+        return false;
+    }
+    return true;
+}
+
+-(void)documentInteractionController:(UIDocumentInteractionController *)controller
+       willBeginSendingToApplication:(NSString *)application {
+    
+}
+
+-(void)documentInteractionController:(UIDocumentInteractionController *)controller
+          didEndSendingToApplication:(NSString *)application {
+    
+}
+
+-(void)documentInteractionControllerDidDismissOpenInMenu:
+(UIDocumentInteractionController *)controller {
+    
+}
+
+
+-(void) displayAlert:(NSString *) str {
+    UIAlertView *alert =
+    [[UIAlertView alloc] initWithTitle:@"Alert"
+                               message:str
+                              delegate:self
+                     cancelButtonTitle:@"OK"
+                     otherButtonTitles:nil];
+    [alert show];
+   
+}
+
+- (void)handleDocumentOpenURL:(NSURL *)url {
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [webView setUserInteractionEnabled:YES];
+    [webView loadRequest:requestObj];
+}
+
+
+
+- (void)handleDocumentOpenURLs:(NSURL *)url {
+    [self displayAlert:[url absoluteString]];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [webView setUserInteractionEnabled:YES];
+    [webView loadRequest:requestObj];
+}
+
+-(void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentAtURL:(NSURL *)url{
+    NSLog(@"URL of the document : %@",url);
+    
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self.fristNateTextField resignFirstResponder];
+    [self.lastNameTextField resignFirstResponder];
 }
 @end

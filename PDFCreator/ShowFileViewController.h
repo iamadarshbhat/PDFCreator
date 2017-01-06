@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShowFileViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface ShowFileViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIDocumentInteractionControllerDelegate,UIDocumentPickerDelegate,UIDocumentMenuDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *fileCollectionView;
 
 - (IBAction)addFileAction:(id)sender;

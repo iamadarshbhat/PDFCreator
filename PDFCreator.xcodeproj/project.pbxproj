@@ -22,7 +22,6 @@
 		C7552DFD1E0BE62C00950582 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7552DFB1E0BE62C00950582 /* LaunchScreen.storyboard */; };
 		C7552E081E0BE62C00950582 /* PDFCreatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7552E071E0BE62C00950582 /* PDFCreatorTests.m */; };
 		C7552E131E0BE62C00950582 /* PDFCreatorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7552E121E0BE62C00950582 /* PDFCreatorUITests.m */; };
-		C7AB20351E13E1C000D548D9 /* MyDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AB20341E13E1C000D548D9 /* MyDataController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,8 +69,7 @@
 		C7552E0E1E0BE62C00950582 /* PDFCreatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PDFCreatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7552E121E0BE62C00950582 /* PDFCreatorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFCreatorUITests.m; sourceTree = "<group>"; };
 		C7552E141E0BE62C00950582 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7AB20331E13E1C000D548D9 /* MyDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDataController.h; sourceTree = "<group>"; };
-		C7AB20341E13E1C000D548D9 /* MyDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDataController.m; sourceTree = "<group>"; };
+		C7DA16131E1D0906002925CA /* PDFCreator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PDFCreator.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +104,7 @@
 				C7552E061E0BE62C00950582 /* PDFCreatorTests */,
 				C7552E111E0BE62C00950582 /* PDFCreatorUITests */,
 				C7552DEB1E0BE62C00950582 /* Products */,
+				C7DA16141E1D091E002925CA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,6 +121,7 @@
 		C7552DEC1E0BE62C00950582 /* PDFCreator */ = {
 			isa = PBXGroup;
 			children = (
+				C7DA16131E1D0906002925CA /* PDFCreator.entitlements */,
 				C7552DF01E0BE62C00950582 /* AppDelegate.h */,
 				C7552DF11E0BE62C00950582 /* AppDelegate.m */,
 				C700191E1E0D530B009A9EFA /* FileController.h */,
@@ -142,8 +142,6 @@
 				C714E9A01E1146DD0047F23D /* FileCell.m */,
 				C714E9A11E1146DD0047F23D /* FileCell.xib */,
 				C714E9A41E1150150047F23D /* PDFCreator.xcdatamodeld */,
-				C7AB20331E13E1C000D548D9 /* MyDataController.h */,
-				C7AB20341E13E1C000D548D9 /* MyDataController.m */,
 			);
 			path = PDFCreator;
 			sourceTree = "<group>";
@@ -172,6 +170,13 @@
 				C7552E141E0BE62C00950582 /* Info.plist */,
 			);
 			path = PDFCreatorUITests;
+			sourceTree = "<group>";
+		};
+		C7DA16141E1D091E002925CA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +249,14 @@
 						DevelopmentTeam = 8YJ3NTXVGY;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					C7552E021E0BE62C00950582 = {
 						CreatedOnToolsVersion = 8.2;
@@ -317,7 +330,6 @@
 				C714E9951E10EA210047F23D /* FolderCell.m in Sources */,
 				C7552DF21E0BE62C00950582 /* AppDelegate.m in Sources */,
 				C714E9991E111EF70047F23D /* ShowFileViewController.m in Sources */,
-				C7AB20351E13E1C000D548D9 /* MyDataController.m in Sources */,
 				C7552DEF1E0BE62C00950582 /* main.m in Sources */,
 				C70019201E0D530B009A9EFA /* FileController.m in Sources */,
 			);
@@ -467,6 +479,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = PDFCreator/PDFCreator.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8YJ3NTXVGY;
 				INFOPLIST_FILE = PDFCreator/Info.plist;
@@ -474,8 +487,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nous.pdfCreator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "129e71a3-16ca-423a-84c8-fadcff0191d2";
-				PROVISIONING_PROFILE_SPECIFIER = PDFcreator;
+				PROVISIONING_PROFILE = "f892cae6-4efd-4d83-ad95-2efcb8c7c4ab";
+				PROVISIONING_PROFILE_SPECIFIER = PDFCreatorDevelop;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -486,6 +499,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = PDFCreator/PDFCreator.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8YJ3NTXVGY;
 				INFOPLIST_FILE = PDFCreator/Info.plist;
@@ -493,8 +507,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nous.pdfCreator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "129e71a3-16ca-423a-84c8-fadcff0191d2";
-				PROVISIONING_PROFILE_SPECIFIER = PDFcreator;
+				PROVISIONING_PROFILE = "f892cae6-4efd-4d83-ad95-2efcb8c7c4ab";
+				PROVISIONING_PROFILE_SPECIFIER = PDFCreatorDevelop;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

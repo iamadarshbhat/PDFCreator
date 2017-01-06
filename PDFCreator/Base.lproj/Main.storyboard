@@ -36,12 +36,18 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="hDH-fG-ebL"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FNg-b7-RJD">
                                                 <rect key="frame" x="20" y="232" width="335" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="iKq-wG-hdY"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zd-52-22E">
                                                 <rect key="frame" x="20" y="284" width="335" height="30"/>
@@ -130,7 +136,7 @@
                     <navigationItem key="navigationItem" title="PDF" id="g9h-wd-o5E">
                         <barButtonItem key="rightBarButtonItem" title="Files" id="zcb-1H-TvU">
                             <connections>
-                                <segue destination="uPV-qF-lU7" kind="show" id="T1o-7P-1z5"/>
+                                <segue destination="uPV-qF-lU7" kind="show" identifier="showFolder" id="T1o-7P-1z5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

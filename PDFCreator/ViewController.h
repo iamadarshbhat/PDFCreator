@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface ViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIDocumentInteractionControllerDelegate,UIDocumentPickerDelegate,UIDocumentMenuDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *btnGeneratePDF;
 //@property (weak, nonatomic) IBOutlet UITextView *myTextView;
 @property (weak, nonatomic) IBOutlet UIButton *btnCamera;
@@ -22,6 +22,7 @@
 - (IBAction)openPDFAction:(id)sender;
 
 - (IBAction)closePDFAction:(id)sender;
+- (void)handleDocumentOpenURLs:(NSURL *)url ;
 
 @end
 
