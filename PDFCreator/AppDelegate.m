@@ -28,31 +28,10 @@
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     
      NSLog(@"inside the open url method %@",url);
-//    if (url != nil && [url isFileURL]) {
-//        
-//        
-//                self.documentViewController = (ViewController *)self.window.rootViewController;
-//                [self.documentViewController handleDocumentOpenURLs:url];
-//            }
-
     
     return YES;
 }
 
-//-(BOOL)application:(UIApplication *)application
-//           openURL:(NSURL *)url
-// sourceApplication:(NSString *)sourceApplication
-//        annotation:(id)annotation {
-//    
-//   
-//    if (url != nil && [url isFileURL]) {
-//        
-//        
-//        self.documentViewController = (ViewController *)self.window.rootViewController;
-//        [self.documentViewController handleDocumentOpenURLs:url];
-//    }
-//    return YES;
-//}
 
 
 

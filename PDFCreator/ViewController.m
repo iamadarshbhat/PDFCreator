@@ -291,11 +291,51 @@
     NSError *error = nil;
    
    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-
+    
+   
     NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
     folderNames = [[NSMutableArray alloc] init];
+   
     for (FolderPaths *folderPaths in results) {
         [folderNames addObject:folderPaths.folderName];
+    }
+    
+    
+    NSArray *inboxPaths = [results filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"folderName == %@",@"Inbox"]];
+    NSArray *rootDirectoryPaths = [results filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"folderName == %@",@"My Documents"]];
+    NSArray *imagePaths = [results filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"folderName == %@",@"Images"]];
+    
+   NSString *inboxPath =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"/Inbox"];
+   
+    
+    if(inboxPaths.count == 0){
+        NSManagedObject *newfolderPath = [NSEntityDescription insertNewObjectForEntityForName:@"FolderPaths" inManagedObjectContext:managedObjectContext];
+        [newfolderPath setValue:@"Inbox"  forKey:@"folderName"];
+        [newfolderPath setValue:inboxPath forKey:@"folderPath"];
+        NSError *error = nil;
+        if ([managedObjectContext save:&error] == NO) {
+            NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
+        }
+    }
+    
+    if(rootDirectoryPaths.count == 0){
+        NSManagedObject *newfolderPath = [NSEntityDescription insertNewObjectForEntityForName:@"FolderPaths" inManagedObjectContext:managedObjectContext];
+        [newfolderPath setValue:@"My Documents"  forKey:@"folderName"];
+        [newfolderPath setValue:inboxPath forKey:@"folderPath"];
+        NSError *error = nil;
+        if ([managedObjectContext save:&error] == NO) {
+            NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
+        }
+    }
+    
+    if(imagePaths.count == 0){
+        NSManagedObject *newfolderPath = [NSEntityDescription insertNewObjectForEntityForName:@"FolderPaths" inManagedObjectContext:managedObjectContext];
+        [newfolderPath setValue:@"Images"  forKey:@"folderName"];
+        [newfolderPath setValue:inboxPath forKey:@"folderPath"];
+        NSError *error = nil;
+        if ([managedObjectContext save:&error] == NO) {
+            NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
+        }
     }
     
     
@@ -303,6 +343,8 @@
         NSLog(@"Error fetching Employee objects: %@\n%@", [error localizedDescription], [error userInfo]);
         abort();
     }
+    
+    
 }
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
