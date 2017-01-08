@@ -45,10 +45,10 @@
 
 //This method is called to fectch photo from library
 - (IBAction)addFileAction:(id)sender {
-    //    UIImagePickerController *imageController = [[UIImagePickerController alloc] init];
-    //    imageController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    //    imageController.delegate = self;
-    //    [self presentViewController:imageController animated:YES completion:nil];
+        UIImagePickerController *imageController = [[UIImagePickerController alloc] init];
+        imageController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        imageController.delegate = self;
+        [self presentViewController:imageController animated:YES completion:nil];
     
     NSError *error;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -60,13 +60,13 @@
     
     
     
-    
-    UIDocumentPickerViewController *documentPicker = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:@[@"public.data"]
-                                                                                                            inMode:UIDocumentPickerModeImport];
-    documentPicker.delegate = self;
-    
-    documentPicker.modalPresentationStyle = UIModalPresentationFormSheet;
-    [self presentViewController:documentPicker animated:YES completion:nil];
+//    
+//    UIDocumentPickerViewController *documentPicker = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:@[@"public.data"]
+//                                                                                                            inMode:UIDocumentPickerModeImport];
+//    documentPicker.delegate = self;
+//    
+//    documentPicker.modalPresentationStyle = UIModalPresentationFormSheet;
+//    [self presentViewController:documentPicker animated:YES completion:nil];
     
     
     //
@@ -108,10 +108,27 @@
     
     NSLog(@"Paths : %@",path);
     
+    [self createAndSaveimage:image];
+  
+    
     [picker dismissViewControllerAnimated:YES completion:nil];
     
-    [self addFile:image];
+   // [self addFile:image];
     
+}
+
+-(void)createAndSaveimage:(UIImage*) image{
+    NSData *pngData =    UIImagePNGRepresentation(image);
+    NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES)[0];
+    
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/Images"];
+    NSError *error;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath]){
+        [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error]; //Create folder
+    }
+  NSString *filePath = [dataPath stringByAppendingPathComponent:@"image.png"];
+  [pngData writeToFile:filePath atomically:YES];
 }
 
 - (UIImage*)loadImage
@@ -132,24 +149,16 @@
 
 - (NSArray *)getFilesFrom:(NSString *)folder{
     
+    
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
     NSString *appFolderPath = [path objectAtIndex:0];
     
-    NSString *folderPath;
-    
-    // if([folder isEqualToString:@"/Inbox"]){
-    folderPath = [appFolderPath stringByAppendingString:folder];
-    //}else if ([folder isEqualToString:@"/My Documents"]){
-    // }else if([folder isEqualToString:@"/Images"]){
-    
-    //  }
+    NSString *folderPath = [appFolderPath stringByAppendingString:folder];
     
     NSError *error1;
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:folderPath error:&error1];
     NSLog(@"error: %@", error1.localizedDescription);
-    
-    
     
     
     int count;

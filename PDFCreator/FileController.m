@@ -25,12 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-  
-    
    
-    [self.fileCollectionView registerNib:[UINib nibWithNibName:@"FolderCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"folderCellID"]; 
-   
+    [self.fileCollectionView registerNib:[UINib nibWithNibName:@"FolderCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"folderCellID"];    
     
 }
 
