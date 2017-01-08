@@ -31,7 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     webView = [[UIWebView alloc] initWithFrame:CGRectMake(20, 70, 330, 300)];
+    webView = [[UIWebView alloc] initWithFrame:CGRectMake(20, 70, 330, 300)];
     self.btnCamera.clipsToBounds = YES;
     
     //half of the width
@@ -39,12 +39,12 @@
     self.btnCamera.layer.borderColor=[UIColor redColor].CGColor;
     self.btnCamera.layer.borderWidth=2.0f;
     
-        // Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [self fetchPathsFromDatabase];
-
+    
 }
 
 - (NSManagedObjectContext *)managedObjectContext {
@@ -60,7 +60,7 @@
     
     if([segue.identifier  isEqual: @"showFolder"]){
         
-       FileController *fileController =  [segue destinationViewController];
+        FileController *fileController =  [segue destinationViewController];
         
         [self fetchPathsFromDatabase];
         fileController.folderNames = folderNames;
@@ -88,7 +88,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     selectedImage =  [info valueForKey:UIImagePickerControllerOriginalImage];
     NSURL *path = [info valueForKey:UIImagePickerControllerReferenceURL];
-    [picker dismissViewControllerAnimated:YES completion:nil];  
+    [picker dismissViewControllerAnimated:YES completion:nil];
     [_btnCamera setImage:selectedImage forState:UIControlStateNormal];
 }
 
@@ -97,58 +97,64 @@
     NSString *fileName = @"purmy.pdf";
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentDirectory = [path objectAtIndex:0];
-    NSString *pdfWithFilename = [documentDirectory stringByAppendingPathComponent:fileName];
+    NSString *dataPath = [documentDirectory stringByAppendingPathComponent:@"/My Documents"];
+    NSError *error;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
+        [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error]; //Create folder
+    
+    NSString *pdfWithFilename = [dataPath stringByAppendingPathComponent:fileName];
     pdfFilePath = pdfWithFilename;
     [self generatePDF:pdfWithFilename];
 }
 
 - (IBAction)openPDFAction:(id)sender {
     
-//    if(pdfFilePath != nil){
-//       NSURL *url = [NSURL fileURLWithPath:pdfFilePath];
-//       NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//       [webView setScalesPageToFit:YES];
-//       [webView loadRequest:request];
-//       [self.view addSubview:webView];
-//     }
+    //    if(pdfFilePath != nil){
+    //       NSURL *url = [NSURL fileURLWithPath:pdfFilePath];
+    //       NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //       [webView setScalesPageToFit:YES];
+    //       [webView loadRequest:request];
+    //       [self.view addSubview:webView];
+    //     }
     
     
     
     
-//    //***********
-//   
-//
+    //    //***********
+    //
+    //
+    [_lastNameTextField resignFirstResponder];
     
     if(pdfFilePath != nil){
-    documentController =[UIDocumentInteractionController
-     interactionControllerWithURL:[NSURL fileURLWithPath:pdfFilePath]];
-    documentController.delegate = self;
-   
-    documentController.UTI = @"com.adobe.pdf";
-    [documentController presentOpenInMenuFromRect:CGRectZero
-                                           inView:self.view
-                                         animated:YES];
+        documentController =[UIDocumentInteractionController
+                             interactionControllerWithURL:[NSURL fileURLWithPath:pdfFilePath]];
+        documentController.delegate = self;
+        
+        documentController.UTI = @"com.adobe.pdf";
+        [documentController presentOpenInMenuFromRect:CGRectZero
+                                               inView:self.view
+                                             animated:YES];
     }
     
     
-   
     
-//    UIDocumentPickerViewController *documentPicker = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:@[@"public.data"]
-//                                                                                                            inMode:UIDocumentPickerModeImport];
-//    documentPicker.delegate = self;
-//    
-//    documentPicker.modalPresentationStyle = UIModalPresentationFormSheet;
-//    [self presentViewController:documentPicker animated:YES completion:nil];
+    
+    //    UIDocumentPickerViewController *documentPicker = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:@[@"public.data"]
+    //                                                                                                            inMode:UIDocumentPickerModeImport];
+    //    documentPicker.delegate = self;
+    //
+    //    documentPicker.modalPresentationStyle = UIModalPresentationFormSheet;
+    //    [self presentViewController:documentPicker animated:YES completion:nil];
     
     
     //**********
     
-//    UIDocumentMenuViewController *importMenu =
-//    [[UIDocumentMenuViewController alloc] initWithDocumentTypes:@[@"public.data"]
-//                                                         inMode:UIDocumentPickerModeImport];
-//    
-//    importMenu.delegate = self;
-//    [self presentViewController:importMenu animated:YES completion:nil];
+    //    UIDocumentMenuViewController *importMenu =
+    //    [[UIDocumentMenuViewController alloc] initWithDocumentTypes:@[@"public.data"]
+    //                                                         inMode:UIDocumentPickerModeImport];
+    //
+    //    importMenu.delegate = self;
+    //    [self presentViewController:importMenu animated:YES completion:nil];
 }
 
 
@@ -174,7 +180,7 @@
     UIGraphicsBeginPDFContextToFile(filePath, CGRectZero, dictionary);
     UIGraphicsBeginPDFPageWithInfo(CGRectMake(0, 0, 850, 1100), nil);
     [self drawBackground];
-   // [self drawText];
+    // [self drawText];
     [self drawText:@"First Name :" inFrame:CGRectMake(20, 30, 150, 30) fontName:@"PostScript" fontSize:20];
     
     [self drawText:self.fristNateTextField.text inFrame:CGRectMake(200, 30, 150, 30) fontName:@"PostScript" fontSize:20];
@@ -205,8 +211,8 @@
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     //CGRect textRect = CGRectMake(0, 0, [self myTextView].frame.size.width, [self myTextView].frame.size.height);
     //NSString *myString = self.myTextView.text;
-   
-   // [myString drawInRect:textRect withAttributes:[NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName]];
+    
+    // [myString drawInRect:textRect withAttributes:[NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName]];
 }
 
 -(void)drawImage:(UIImage*)image inRect:(CGRect)rect
@@ -289,13 +295,13 @@
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"FolderPaths"];
     NSError *error = nil;
-   
-   NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     
-   
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    
+    
     NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
     folderNames = [[NSMutableArray alloc] init];
-   
+    
     for (FolderPaths *folderPaths in results) {
         [folderNames addObject:folderPaths.folderName];
     }
@@ -305,8 +311,8 @@
     NSArray *rootDirectoryPaths = [results filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"folderName == %@",@"My Documents"]];
     NSArray *imagePaths = [results filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"folderName == %@",@"Images"]];
     
-   NSString *inboxPath =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"/Inbox"];
-   
+    NSString *inboxPath =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"/Inbox"];
+    
     
     if(inboxPaths.count == 0){
         NSManagedObject *newfolderPath = [NSEntityDescription insertNewObjectForEntityForName:@"FolderPaths" inManagedObjectContext:managedObjectContext];
@@ -348,7 +354,7 @@
 }
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
-   
+    
     if(folderNames == nil){
         return false;
     }
@@ -379,7 +385,7 @@
                      cancelButtonTitle:@"OK"
                      otherButtonTitles:nil];
     [alert show];
-   
+    
 }
 
 - (void)handleDocumentOpenURL:(NSURL *)url {

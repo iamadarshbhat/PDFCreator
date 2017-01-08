@@ -12,7 +12,6 @@
 		C714E9961E10EA210047F23D /* FolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C714E9941E10EA210047F23D /* FolderCell.xib */; };
 		C714E9991E111EF70047F23D /* ShowFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C714E9981E111EF70047F23D /* ShowFileViewController.m */; };
 		C714E9A21E1146DD0047F23D /* FileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C714E9A01E1146DD0047F23D /* FileCell.m */; };
-		C714E9A31E1146DD0047F23D /* FileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C714E9A11E1146DD0047F23D /* FileCell.xib */; };
 		C714E9A61E1150150047F23D /* PDFCreator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C714E9A41E1150150047F23D /* PDFCreator.xcdatamodeld */; };
 		C7552DEF1E0BE62C00950582 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C7552DEE1E0BE62C00950582 /* main.m */; };
 		C7552DF21E0BE62C00950582 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7552DF11E0BE62C00950582 /* AppDelegate.m */; };
@@ -22,6 +21,7 @@
 		C7552DFD1E0BE62C00950582 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7552DFB1E0BE62C00950582 /* LaunchScreen.storyboard */; };
 		C7552E081E0BE62C00950582 /* PDFCreatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7552E071E0BE62C00950582 /* PDFCreatorTests.m */; };
 		C7552E131E0BE62C00950582 /* PDFCreatorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7552E121E0BE62C00950582 /* PDFCreatorUITests.m */; };
+		DDAB3CCF1E2227310025A3E8 /* FileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDAB3CCE1E2227310025A3E8 /* FileCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +51,6 @@
 		C714E9981E111EF70047F23D /* ShowFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowFileViewController.m; sourceTree = "<group>"; };
 		C714E99F1E1146DD0047F23D /* FileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCell.h; sourceTree = "<group>"; };
 		C714E9A01E1146DD0047F23D /* FileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCell.m; sourceTree = "<group>"; };
-		C714E9A11E1146DD0047F23D /* FileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileCell.xib; sourceTree = "<group>"; };
 		C714E9A51E1150150047F23D /* PDFCreator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PDFCreator.xcdatamodel; sourceTree = "<group>"; };
 		C7552DEA1E0BE62C00950582 /* PDFCreator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDFCreator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7552DEE1E0BE62C00950582 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -70,6 +69,7 @@
 		C7552E121E0BE62C00950582 /* PDFCreatorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFCreatorUITests.m; sourceTree = "<group>"; };
 		C7552E141E0BE62C00950582 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7DA16131E1D0906002925CA /* PDFCreator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PDFCreator.entitlements; sourceTree = "<group>"; };
+		DDAB3CCE1E2227310025A3E8 /* FileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +132,7 @@
 				C7552DF91E0BE62C00950582 /* Assets.xcassets */,
 				C7552DFB1E0BE62C00950582 /* LaunchScreen.storyboard */,
 				C7552DFE1E0BE62C00950582 /* Info.plist */,
+				DDAB3CCE1E2227310025A3E8 /* FileCell.xib */,
 				C7552DED1E0BE62C00950582 /* Supporting Files */,
 				C714E9921E10EA210047F23D /* FolderCell.h */,
 				C714E9931E10EA210047F23D /* FolderCell.m */,
@@ -140,7 +141,6 @@
 				C714E9981E111EF70047F23D /* ShowFileViewController.m */,
 				C714E99F1E1146DD0047F23D /* FileCell.h */,
 				C714E9A01E1146DD0047F23D /* FileCell.m */,
-				C714E9A11E1146DD0047F23D /* FileCell.xib */,
 				C714E9A41E1150150047F23D /* PDFCreator.xcdatamodeld */,
 			);
 			path = PDFCreator;
@@ -298,7 +298,7 @@
 				C7552DFD1E0BE62C00950582 /* LaunchScreen.storyboard in Resources */,
 				C7552DFA1E0BE62C00950582 /* Assets.xcassets in Resources */,
 				C7552DF81E0BE62C00950582 /* Main.storyboard in Resources */,
-				C714E9A31E1146DD0047F23D /* FileCell.xib in Resources */,
+				DDAB3CCF1E2227310025A3E8 /* FileCell.xib in Resources */,
 				C714E9961E10EA210047F23D /* FolderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

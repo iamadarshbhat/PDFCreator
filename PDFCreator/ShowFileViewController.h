@@ -10,6 +10,7 @@
 
 @interface ShowFileViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIDocumentInteractionControllerDelegate,UIDocumentPickerDelegate,UIDocumentMenuDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *fileCollectionView;
+@property  NSString *selectedFolder;
 
 - (IBAction)addFileAction:(id)sender;
 

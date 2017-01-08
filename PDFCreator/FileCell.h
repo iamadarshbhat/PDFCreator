@@ -10,5 +10,6 @@
 
 @interface FileCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imgFile;
+@property (weak, nonatomic) IBOutlet UILabel *lblFileName;
 
 @end

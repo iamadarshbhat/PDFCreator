@@ -69,6 +69,7 @@
 
 -(void)onFolderClick:(id)sender{
     ShowFileViewController *showFileController =  [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"showFileControllerId"];
+     showFileController.selectedFolder =   [NSString stringWithFormat:@"/%@",((UIButton *)sender).currentTitle];
     [self.navigationController pushViewController:showFileController animated:YES];
 }
 
